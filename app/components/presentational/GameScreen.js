@@ -4,12 +4,14 @@
  */
 
 import React, { Component } from 'react';
-import { View, Image, Dimensions, StyleSheet } from 'react-native';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 
 import PlayerSprite from '../containers/PlayerSprite';
 import GameMechanics from '../containers/GameMechanics';
 
+/**
+ * Renders everything needed for the core game
+ * @class 
+ */
 class GameScreen extends Component {
 
     render() {

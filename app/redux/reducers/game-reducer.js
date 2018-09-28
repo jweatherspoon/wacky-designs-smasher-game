@@ -18,6 +18,11 @@ const initialState = {
     gameTime: 0
 }
 
+/**
+ * Reducer function for game state 
+ * @param {object} state - The previous game state of the application
+ * @param {object}  action = The action dispatched to this reducer
+ */
 export default GameReducer = (state = initialState, action) => {
     switch(action.type) {
         case UPDATE_DIFFICULTY:

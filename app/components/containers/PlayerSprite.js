@@ -1,9 +1,18 @@
+/**
+ * @file Container component for handline player sprite rendering
+ * @author Jonathan Weatherspoon
+ */
+
 import React, { Component } from 'react';
 import { Dimensions, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import Sprite from '../../assets/images/Sprite.png';
 
+/**
+ * Renders the player sprite 
+ * @class 
+ */
 class PlayerSprite extends Component {
 
     state = {

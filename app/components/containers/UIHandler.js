@@ -16,13 +16,11 @@ const screenDictionary = {
     GameScreen: <GameScreen key={'activeScreen'}/>
 }
 
+/**
+ * Handles UI switching for  the application
+ * @class 
+ */
 class UIHandler extends Component {
-
-    startGame = () => {
-        this.setState({
-            currentComponent: GameScreen
-        })
-    }
 
     render() {
         let screenComponent = screenDictionary[this.props.screen];
@@ -36,8 +34,4 @@ const mapStateToProps = state => ({
         screen: state.screen
 })
 
-const mapDispatchToProps = dispatch => ({
-    changeUI: () => dispatch(changeUI(GameScreen))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(UIHandler);
+export default connect(mapStateToProps)(UIHandler);

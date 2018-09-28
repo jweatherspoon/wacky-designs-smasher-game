@@ -1,17 +1,32 @@
-import React, { Component } from 'react';
-import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
+/**
+ * @file Container component that handles the player movement mechanics
+ * @author Jonathan Weatherspoon
+ */
+
+import GestureRecognizer from 'react-native-swipe-gestures';
 import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { movePlayer } from '../../redux/actions';
 
 const width = Dimensions.get('window').width;
 
+/**
+ * Extension of the gesture recognizer to handle player
+ * movement mechanics
+ */
 class GameMechanics extends GestureRecognizer {
 
 }
 
 let moveAnimation = null;
 const steps = 10;
+
+/**
+ * Handle the player movement animation by repeatedly dispatching 
+ * actions to the redux store
+ * @param {function} dispatch - The dispatch function for redux
+ * @param {number} direction - 1 for right, -1 for left 
+ */
 const playerAnimation = (dispatch, direction) => {
     const delta = width / 5;
     if(!moveAnimation) {

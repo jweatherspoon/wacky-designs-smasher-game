@@ -10,6 +10,9 @@ import PlayerReducer from './player-reducer';
 import ScreenReducer from './screen-reducer';
 import PillarReducer from './pillar-reducer';
 
+/**
+ * Handles all application state updates
+ */
 export default RootReducer = combineReducers({
     game: GameReducer,
     player: PlayerReducer,

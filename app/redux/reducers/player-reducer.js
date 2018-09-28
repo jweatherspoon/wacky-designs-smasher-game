@@ -17,6 +17,11 @@ const initialState = {
     lives: 1,
 };
 
+/**
+ * Reducer function for the player state 
+ * @param {object} state - The previous player's state 
+ * @param {object} action = The action dispatched to this reducer
+ */
 export default PlayerReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_PLAYER_CURRENCY:

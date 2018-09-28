@@ -11,6 +11,11 @@ import defaultPillar from '../../models/pillar';
 
 const initialState = [0,1,2,3,4].map(i => defaultPillar(i));
 
+/**
+ * Handles updating the pillar  state for the application
+ * @param {object[]} state - The previous state of the application
+ * @param {object} action - The action dispatched to this reducer
+ */
 export default PillarReducer = (state = initialState, action) => {
     switch(action.type) {
         default: 
