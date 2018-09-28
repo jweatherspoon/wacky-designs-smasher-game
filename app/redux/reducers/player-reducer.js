@@ -37,7 +37,7 @@ export default PlayerReducer = (state = initialState, action) => {
         case UPDATE_PLAYER_POSITION:
             return {
                 ...state,
-                position: action.payload.position
+                position: state.position + action.payload.position
             }
         default:
             return state

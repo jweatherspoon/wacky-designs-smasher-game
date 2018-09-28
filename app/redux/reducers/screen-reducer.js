@@ -7,9 +7,9 @@ import {
     UPDATE_SCREEN
 } from '../actions/action-types';
 
-import WelcomeScreen from '../../components/pages/WelcomeScreen';
+import WelcomeScreen from '../../components/presentational/WelcomeScreen';
 
-const initialState = WelcomeScreen;
+const initialState = "WelcomeScreen";
 
 export default ScreenReducer = (state = initialState, action) => {
     switch(action.type) {

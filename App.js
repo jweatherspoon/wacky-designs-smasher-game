@@ -12,7 +12,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import RootReducer from './app/redux/reducers/root-reducer';
-import UIHandler from './app/components/pages/UIHandler';
+import UIHandler from './app/components/containers/UIHandler';
 
 const store = createStore(RootReducer);
 
@@ -20,9 +20,9 @@ export default class App extends Component {
 
   render() {
     return (
-      // <Provider store={store}>
+      <Provider store={store}>
         <UIHandler />
-      // </Provider>
+      </Provider>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
+import PlayButton from '../containers/PlayButton';
 
 class WelcomeScreen extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class WelcomeScreen extends Component {
                     }}>
                     Wacky Designs Smasher Game
                 </Text>
-                <Button title={'PLAY'} onPress={this.props.changeUI} />
+                <PlayButton />
             </View>
         )
     }
