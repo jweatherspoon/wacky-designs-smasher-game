@@ -4,7 +4,7 @@ import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { movePlayer } from '../../redux/actions';
 
-const moveLen = Dimensions.get('window').width / 5;
+const width = Dimensions.get('window').width;
 
 class GameMechanics extends GestureRecognizer {
 
@@ -13,13 +13,13 @@ class GameMechanics extends GestureRecognizer {
 let moveAnimation = null;
 const steps = 10;
 const playerAnimation = (dispatch, direction) => {
-    const delta = Dimensions.get('window').width / 5;
+    const delta = width / 5;
     if(!moveAnimation) {
         let counter = 0, step = delta / steps;
         moveAnimation = setInterval(() => {
             if(counter < steps) {
                 counter++;
-                dispatch(movePlayer(direction * step));
+                dispatch(movePlayer(direction * step, width - delta));
             } else {
                 clearInterval(moveAnimation);
                 moveAnimation = null;
@@ -29,6 +29,7 @@ const playerAnimation = (dispatch, direction) => {
 }
 
 const mapDispatchToProps = dispatch => ({
+    onSwipeLeft: () => playerAnimation(dispatch, -1),
     onSwipeRight: () => playerAnimation(dispatch, 1),
 })
 

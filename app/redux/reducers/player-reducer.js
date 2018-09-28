@@ -18,7 +18,7 @@ const initialState = {
 };
 
 export default PlayerReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case UPDATE_PLAYER_CURRENCY:
             return {
                 ...state,
@@ -35,9 +35,12 @@ export default PlayerReducer = (state = initialState, action) => {
                 lives: Math.max(state.lives - 1, 0),
             }
         case UPDATE_PLAYER_POSITION:
+            let position = Math.min(action.payload.max,
+                Math.max(state.position + action.payload.position,
+                    action.payload.min));
             return {
                 ...state,
-                position: state.position + action.payload.position
+                position
             }
         default:
             return state
