@@ -13,16 +13,28 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import RootReducer from './app/redux/reducers/root-reducer';
 import UIHandler from './app/components/containers/UIHandler';
+import StatusBarBackground from './app/components/presentational/StatusBarBackground';
 
 const store = createStore(RootReducer);
 
-export default class App extends Component {
+class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <UIHandler />
-      </Provider>
+        <View style={styles.container}>
+          <StatusBarBackground />
+          <Provider store={store}>
+            <UIHandler />
+          </Provider>
+        </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+})
+
+export default App;

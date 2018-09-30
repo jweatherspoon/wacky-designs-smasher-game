@@ -7,8 +7,6 @@ import {
     UPDATE_SCREEN
 } from '../actions/action-types';
 
-import WelcomeScreen from '../../components/presentational/WelcomeScreen';
-
 const initialState = "WelcomeScreen";
 
 /**

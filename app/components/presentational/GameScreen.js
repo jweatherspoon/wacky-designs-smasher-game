@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 
 import PlayerSprite from '../containers/PlayerSprite';
 import GameMechanics from '../containers/GameMechanics';
+import PillarContainer from '../containers/PillarContainer';
 
 /**
  * Renders everything needed for the core game
@@ -27,6 +28,7 @@ class GameScreen extends Component {
                 style={{
                     flex: 1
                 }} >
+                <PillarContainer />
                 <PlayerSprite />
             </GameMechanics>
         )
