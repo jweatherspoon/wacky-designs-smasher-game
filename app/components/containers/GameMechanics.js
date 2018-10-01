@@ -15,7 +15,15 @@ const width = Dimensions.get('window').width;
  * movement mechanics
  */
 class GameMechanics extends GestureRecognizer {
+    update = () => {
 
+    }
+
+    selectPillars = () => {
+
+    }
+
+    
 }
 
 let moveAnimation = null;
@@ -42,6 +50,10 @@ const playerAnimation = (dispatch, direction) => {
         }, 10)
     }
 }
+
+const mapStateToProps = state => ({
+    pillars: state.pillars
+})
 
 const mapDispatchToProps = dispatch => ({
     onSwipeLeft: () => playerAnimation(dispatch, -1),

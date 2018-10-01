@@ -12,8 +12,12 @@ import Pillar from './Pillar';
 class PillarContainer extends Component {
     render() {
         let pillars = this.props.pillars.map(pillarObj => (
-            <Pillar pillar={pillarObj} style={styles.pillar} 
-                key={pillarObj.column} />
+            <Pillar pillar={pillarObj} key={pillarObj.column}
+                style={{
+                    ...styles.pillar,
+                    height: pillarObj.position,
+                    backgroundColor: pillarObj.bg
+                }} />
         ))
         return (
             <View style={styles.container}>
@@ -26,12 +30,13 @@ class PillarContainer extends Component {
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     },
     pillar: {
-        display: 'flex',
-        flexGrow: 1,
-        width: '100%'
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 

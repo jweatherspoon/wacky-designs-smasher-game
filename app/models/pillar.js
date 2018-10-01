@@ -7,7 +7,8 @@ export default column => {
     return {
         activeOn: null,
         fallsOn: null,
-        position: 0,
+        bg: 'whitesmoke',
+        position: 20,
         column: column
     }
 }
