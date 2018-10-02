@@ -29,3 +29,39 @@ export const movePlayer = (delta, max) => ({
         max: max
     }
 })
+
+export const updatePillarPosition = (index, position) => ({
+    type: types.UPDATE_PILLAR_POSITION,
+    payload: {
+        index, 
+        position
+    }
+})
+
+/**
+ * Activate a pillar
+ */
+export const activatePillar = (index, fallsOn) => ({
+    type: types.ACTIVATE_PILLAR,
+    payload: {
+        index,
+        fallsOn
+    }
+});
+
+/**
+ * Deactivate a pillar
+ */
+export const deactivatePillar = index => ({
+    type: types.DEACTIVATE_PILLAR,
+    payload: {
+        index
+    }
+})
+
+/**
+ * Increment the game time
+ */
+export const incrementGameTime = () => ({
+    type: types.INCREMENT_GAME_TIME
+})

@@ -16,7 +16,7 @@ class PillarContainer extends Component {
                 style={{
                     ...styles.pillar,
                     height: pillarObj.position,
-                    backgroundColor: pillarObj.bg
+                    backgroundColor: pillarObj.color
                 }} />
         ))
         return (

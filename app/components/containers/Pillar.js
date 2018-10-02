@@ -14,7 +14,7 @@ import { View, Text } from 'react-native';
 class Pillar extends Component {
     render() {
         return (
-            <View style={this.props.style}>
+            <View style={this.props.style} >
                 <Text>{this.props.pillar.column}</Text>
             </View>
         )
