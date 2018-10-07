@@ -23,10 +23,9 @@ class PlayerSprite extends Component {
         return (
             <Image source={Sprite}
                 style={{
+                    ...this.props.style,
                     height: this.state.dims,
                     width: this.state.dims,
-                    bottom: 0,
-                    position: 'absolute',
                     left: this.props.position
                 }}
             />

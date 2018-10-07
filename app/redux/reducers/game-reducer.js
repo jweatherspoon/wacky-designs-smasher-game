@@ -7,6 +7,7 @@ import {
     UPDATE_DIFFICULTY,
     UPDATE_HIGH_SCORE,
     INCREMENT_GAME_TIME,
+    RESET_GAME_TIME,
     INCREMENT_SCORE,
     RESET_SCORE
 } from '../actions/action-types';
@@ -21,7 +22,7 @@ const initialState = {
 /**
  * Reducer function for game state 
  * @param {object} state - The previous game state of the application
- * @param {object}  action = The action dispatched to this reducer
+ * @param {object}  action - The action dispatched to this reducer
  */
 export default GameReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -39,6 +40,12 @@ export default GameReducer = (state = initialState, action) => {
             return {
                 ...state,
                 gameTime: state.gameTime + 1
+            }
+        case RESET_GAME_TIME:
+            return {
+                ...state,
+                score: 0,
+                gameTime: 0
             }
         case INCREMENT_SCORE:
             return {

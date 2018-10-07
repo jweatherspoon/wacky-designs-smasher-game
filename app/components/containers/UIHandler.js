@@ -5,11 +5,9 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-redux';
+
 import WelcomeScreen from '../presentational/WelcomeScreen';
 import GameScreen from '../presentational/GameScreen';
-
-import { changeUI } from '../../redux/actions';
 
 const screenDictionary = {
     WelcomeScreen: <WelcomeScreen key={'activeScreen'}/>,

@@ -4,6 +4,7 @@
  */
 
 import React, { Component } from 'react';
+import { View } from 'react-native';
 
 import PlayerSprite from '../containers/PlayerSprite';
 import GameMechanics from '../containers/GameMechanics';
@@ -28,8 +29,18 @@ class GameScreen extends Component {
                 style={{
                     flex: 1
                 }} >
-                <PillarContainer />
-                <PlayerSprite />
+                <View style={{zIndex: 2}}>
+                    <PillarContainer /> 
+                </View>
+
+                <View style={{
+                    zIndex: 1,
+                    position: 'absolute', 
+                    bottom: 20,
+                    width: '100%'
+                }}>
+                    <PlayerSprite /> 
+                </View>
             </GameMechanics>
         )
     }

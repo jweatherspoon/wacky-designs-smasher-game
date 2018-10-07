@@ -15,6 +15,7 @@ class PillarContainer extends Component {
             <Pillar pillar={pillarObj} key={pillarObj.column}
                 style={{
                     ...styles.pillar,
+                    ...this.props.pillar,
                     height: pillarObj.position,
                     backgroundColor: pillarObj.color
                 }} />

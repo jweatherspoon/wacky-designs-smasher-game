@@ -5,6 +5,11 @@
 
 import * as types from './action-types';
 
+// SCREEN NAMES
+const WELCOME_SCREEN = 'WELCOME_SCREEN';
+const GAME_SCREEN = 'GAME_SCREEN';
+const GAME_OVER_SCREEN = 'GAME_OVER_SCREEN';
+
 /**
  * Change the active screen in the application
  * @param {string} screen - The name of the screen component
@@ -15,6 +20,11 @@ export const changeUI = screen => ({
         screen: screen
     }
 })
+
+// Specific screen action creators
+export const displayWelcome = () => changeUI(WELCOME_SCREEN);
+export const displayGame = () => changeUI(GAME_SCREEN);
+export const displayGameOver = () => changeUI(GAME_OVER_SCREEN);
 
 /**
  * Move the player sprite 
@@ -64,4 +74,36 @@ export const deactivatePillar = index => ({
  */
 export const incrementGameTime = () => ({
     type: types.INCREMENT_GAME_TIME
+})
+
+/**
+ * Reset the game timer to 0
+ */
+export const resetGameVars = () => ({
+    type: types.RESET_GAME_VARS
+})
+
+/**
+ * Reset the player score to 0
+ */
+export const resetScore = () => ({
+    type: types.RESET_SCORE
+})
+
+/**
+ * Increment the score by 1
+ */
+export const incrementScore = () => ({
+    type: types.INCREMENT_SCORE
+})
+
+/**
+ * Update the high score for the player
+ * @param {number} score - The new high score
+ */
+export const updateHighScore = score => ({
+    type: types.UPDATE_HIGH_SCORE,
+    payload: {
+        highScore: score
+    }
 })
