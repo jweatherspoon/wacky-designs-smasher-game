@@ -40,14 +40,12 @@ class Pillar extends Component {
 
     componentWillUnmount() {
         clearInterval(this.state.updateInterval);
-        this.setState({
-            updateInterval: null
-        })
+        clearInterval(this.state.animation);
     }
 
     update = () => {
-        let thisPillar = this.props.pillars[this.props.pillar.column];
-        if(thisPillar.fallsOn >= this.props.ticks) {
+        let thisPillar = this.props.pillars[this.props.id];
+        if(thisPillar.active && this.props.ticks >= thisPillar.fallsOn) {
             this.drop();
         }
     }

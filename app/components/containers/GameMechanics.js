@@ -6,6 +6,7 @@
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
+import { _ } from 'lodash';
 import {
     movePlayer,
     incrementGameTime,
@@ -23,7 +24,6 @@ class GameMechanics extends GestureRecognizer {
 
     state = {
         gameInterval: null,
-        activated: false
     }
 
     componentDidMount = () => {
@@ -42,19 +42,26 @@ class GameMechanics extends GestureRecognizer {
     update = () => {
         this.props.dispatch(incrementGameTime());
 
-        // Check to see if any pillars need to be activated 
-        if(!this.state.activated) {
-            this.activatePillar(2);
-            this.setState({activated:  true})
+        if(this.props.ticks > 100) {
+            // Check to see if any pillars need to be activated 
+            let activePillars = this.props.pillars.filter(pillar => pillar.active);
+
+            if (activePillars.length === 0) {
+                activePillars = this.selectPillars();
+                activePillars.forEach(pillar => this.activatePillar(pillar.column));
+            } else {
+
+            }
         }
     }
 
     selectPillars = () => {
-        return (Math.random() < 0.5) ? this.props.pillars[2] : this.props.pillars[3];
+        let selectionNum = 2;
+        return _.sampleSize(this.props.pillars, selectionNum);
     }
 
     activatePillar = id => {
-        this.props.dispatch(activatePillar(id, this.props.ticks + 1000));
+        this.props.dispatch(activatePillar(id, this.props.ticks + 50));
     }
 
 }
@@ -88,6 +95,7 @@ const mapStateToProps = state => ({
     pillars: state.pillars,
     ticks: state.game.gameTime,
     player: state.player,
+    difficulty: state.game.difficulty
 })
 
 const mapDispatchToProps = dispatch => ({

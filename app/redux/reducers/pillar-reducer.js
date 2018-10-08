@@ -33,7 +33,7 @@ export default PillarReducer = (state = initialState, action) => {
     let newState, pillar;
     switch(action.type) {
         case UPDATE_PILLAR_POSITION:
-            newState = state;
+            newState = JSON.parse(JSON.stringify(state));
             pillar = GetPillar(newState, action.payload.index);
             newState[action.payload.index] = {
                 ...pillar, 
@@ -42,7 +42,7 @@ export default PillarReducer = (state = initialState, action) => {
 
             return newState;
         case ACTIVATE_PILLAR:
-            newState = state;
+            newState = JSON.parse(JSON.stringify(state));
             pillar = GetPillar(newState, action.payload.index);
             newState[action.payload.index] = {
                 ...pillar, 
@@ -50,17 +50,17 @@ export default PillarReducer = (state = initialState, action) => {
                 active: true,
                 fallsOn: action.payload.fallsOn
             }
-            alert(JSON.stringify(newState));
             return newState;
         case DEACTIVATE_PILLAR:
-            newState = state;
+            newState = JSON.parse(JSON.stringify(state));
             pillar = GetPillar(newState, action.payload.index);
             newState[action.payload.index] = {
                 ...pillar,
-                colors: colors.INACTIVE,
+                color: colors.INACTIVE,
                 active: false,
                 fallsOn: -1
             }
+            return newState;
         default: 
             return state;
     }

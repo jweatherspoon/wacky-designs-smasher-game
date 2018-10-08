@@ -15,13 +15,12 @@ class ScoreDisplay extends Component {
     render() {
         return (
             <ValueDisplay style={this.props.style}
-                text={"Score"} value={this.props.ticks} />
+                text={"Score"} value={this.props.score} />
         )
     }
 }
 
 const mapStateToProps = state => ({
-    ticks: state.game.gameTime,
     score: state.game.score
 });
 
