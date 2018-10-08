@@ -4,8 +4,8 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import ValueDisplay from '../presentational/ValueDisplay';
 
 /**
  * Container component for displaying the player's score
@@ -14,16 +14,14 @@ import { connect } from 'react-redux';
 class ScoreDisplay extends Component {
     render() {
         return (
-            <View>
-                <Text style={{...this.props.style}}>
-                    Score: {this.props.score}
-                </Text>
-            </View>
+            <ValueDisplay style={this.props.style}
+                text={"Score"} value={this.props.ticks} />
         )
     }
 }
 
 const mapStateToProps = state => ({
+    ticks: state.game.gameTime,
     score: state.game.score
 });
 

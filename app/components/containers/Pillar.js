@@ -10,13 +10,14 @@ import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import {
     displayGameOver,
     updateHighScore,
-    incrementScore
+    incrementScore,
+    deactivatePillar
 } from '../../redux/actions';
 
 const windowHeight = Dimensions.get('window').height;
 
 const minHeight = 20;
-const maxHeight = windowHeight- minHeight - 20;
+const maxHeight = windowHeight - minHeight - 20;
 const dropStep = maxHeight / 25;
 
 /**
@@ -26,8 +27,29 @@ const dropStep = maxHeight / 25;
 class Pillar extends Component {
 
     state = {
-        height: minHeight,
-        animation: null
+        height: 20,
+        animation: null,
+        updateInterval: null
+    }
+
+    componentDidMount() {
+        this.setState({
+            updateInterval: setInterval(this.update, 10)
+        })
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.updateInterval);
+        this.setState({
+            updateInterval: null
+        })
+    }
+
+    update = () => {
+        let thisPillar = this.props.pillars[this.props.pillar.column];
+        if(thisPillar.fallsOn >= this.props.ticks) {
+            this.drop();
+        }
     }
 
     drop = () => {
@@ -89,6 +111,7 @@ class Pillar extends Component {
         this.setState({
             animation: null
         })
+        this.props.dispatch(deactivatePillar(this.props.id));
     }
 
     incrementScore = () => {
@@ -96,13 +119,15 @@ class Pillar extends Component {
     }
 
     render() {
+        let id = this.props.pillar.column;
         return (
             <View style={{
                 ...this.props.style,
-                height: this.state.height
+                height: this.state.height,
+                backgroundColor: this.props.pillars[this.props.id].color
             }} >
                 <TouchableOpacity onPress={this.drop}>
-                    <Text>{this.props.pillar.column}</Text>
+                    <Text>{this.props.pillars[this.props.id].fallsOn}</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -112,7 +137,9 @@ class Pillar extends Component {
 const mapStateToProps = state => ({
     highScore: state.game.highScore,
     currentScore: state.game.score,
-    player: state.player
+    player: state.player,
+    ticks: state.game.gameTime,
+    pillars: state.pillars
 })
 
 export default connect(mapStateToProps)(Pillar);

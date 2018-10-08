@@ -16,7 +16,7 @@ const colors = {
 
 const initialState = [0, 1, 2, 3, 4].map(column => ({
     active: false,
-    fallsOn: null,
+    fallsOn: -1,
     color: colors.INACTIVE,
     column: column
 }));
@@ -50,6 +50,7 @@ export default PillarReducer = (state = initialState, action) => {
                 active: true,
                 fallsOn: action.payload.fallsOn
             }
+            alert(JSON.stringify(newState));
             return newState;
         case DEACTIVATE_PILLAR:
             newState = state;
@@ -58,7 +59,7 @@ export default PillarReducer = (state = initialState, action) => {
                 ...pillar,
                 colors: colors.INACTIVE,
                 active: false,
-                fallsOn: null
+                fallsOn: -1
             }
         default: 
             return state;

@@ -25,7 +25,7 @@ class PillarContainer extends Component {
 
     render() {
         let pillars = this.props.pillars.map(pillarObj => (
-            <Pillar pillar={pillarObj} key={pillarObj.column}
+            <Pillar pillar={pillarObj} id={pillarObj.column} key={pillarObj.column}
                 width={this.state.pillarWidth} style={{
                     ...styles.pillar,
                     ...this.props.pillar,

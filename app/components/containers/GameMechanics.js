@@ -9,8 +9,6 @@ import { connect } from 'react-redux';
 import {
     movePlayer,
     incrementGameTime,
-    updatePillarPosition,
-    deactivatePillar,
     activatePillar
 } from '../../redux/actions';
 
@@ -25,18 +23,12 @@ class GameMechanics extends GestureRecognizer {
 
     state = {
         gameInterval: null,
-        pillarIntervals: [
-            null,
-            null,
-            null,
-            null,
-            null
-        ]
+        activated: false
     }
 
     componentDidMount = () => {
         this.setState({
-            gameInterval: setInterval(this.update, 10)
+            gameInterval: setInterval(this.update, tickTime)
         })
     }
 
@@ -51,64 +43,18 @@ class GameMechanics extends GestureRecognizer {
         this.props.dispatch(incrementGameTime());
 
         // Check to see if any pillars need to be activated 
-        let activePillars = this.props.pillars.filter(pillar => pillar.active);
-
-        this.activatePillar(0);
-
-        clearInterval(this.state.gameInterval);
-
-        // // Activate some pillars
-        // if (activePillars.length === 0) {
-        //     activePillars = this.selectPillars();
-        //     for(let i = 0; i < activePillars.length; i++) {
-        //         let pillar = activePillars[i];
-        //         this.activatePillar(pillar.column)
-        //     }
-        // } else {
-        //     // Check to see if any pillars need to be dropped
-        //     for(let i = 0; i < activePillars.length; i++) {
-        //         let pillar = activePillars[i];
-        //         if (pillar.fallsOn === this.props.ticks) {
-        //             this.dropPillar(pillar.column);
-        //         }
-        //     }
-        // }
+        if(!this.state.activated) {
+            this.activatePillar(2);
+            this.setState({activated:  true})
+        }
     }
 
     selectPillars = () => {
-        return this.props.pillars;
+        return (Math.random() < 0.5) ? this.props.pillars[2] : this.props.pillars[3];
     }
 
     activatePillar = id => {
-        this.props.dispatch(activatePillar(id, this.props.ticks + 100));
-    }
-
-    dropPillar = id => {
-        let intervals = this.state.pillarIntervals;
-        let fallDir = 1;
-        intervals[id] = setInterval(() => {
-            if (this.props.pillars[id].position < 100) {
-                let pillarPos = this.props.pillars[id].position + 10;
-                this.props.dispatch(updatePillarPosition(id, pillarPos))
-            } else {
-                fallDir = -1;
-                let pillarPos = this.props.pillars[id].position - 10;
-                this.props.dispatch(updatePillarPosition(id, pillarPos));
-            }
-
-            if(fallDir === -1 && this.props.pillars[id].position <= 10) {
-                clearInterval(intervals[id]);
-                intervals[id] = null;
-                this.setState({
-                    pillarIntervals: intervals
-                })
-                this.props.dispatch(deactivatePillar(id));
-            }
-        }, tickTime);
-
-        this.setState({
-            pillarIntervals: intervals
-        });
+        this.props.dispatch(activatePillar(id, this.props.ticks + 1000));
     }
 
 }
@@ -141,6 +87,7 @@ const playerAnimation = (dispatch, direction) => {
 const mapStateToProps = state => ({
     pillars: state.pillars,
     ticks: state.game.gameTime,
+    player: state.player,
 })
 
 const mapDispatchToProps = dispatch => ({

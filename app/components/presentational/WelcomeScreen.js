@@ -6,6 +6,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import PlayButton from '../containers/PlayButton';
+import HighScoreDisplay from '../containers/HighScoreDisplay';
 
 /**
  * Handles the welcome screen rendering 
@@ -19,6 +20,7 @@ class WelcomeScreen extends Component {
                 <Text style={styles.title}>
                     Wacky Designs Smasher Game
                 </Text>
+                <HighScoreDisplay />
                 <PlayButton />
             </View>
         )
