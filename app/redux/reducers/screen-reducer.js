@@ -7,7 +7,9 @@ import {
     UPDATE_SCREEN
 } from '../actions/action-types';
 
-const initialState = "WelcomeScreen";
+import { WELCOME_SCREEN } from '../screens';
+
+const initialState = WELCOME_SCREEN;
 
 /**
  * Reducer  function for updating application UI

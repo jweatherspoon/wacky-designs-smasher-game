@@ -6,12 +6,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import * as screens from '../../redux/screens';
+
 import WelcomeScreen from '../presentational/WelcomeScreen';
 import GameScreen from '../presentational/GameScreen';
+import GameOverScreen from '../presentational/GameOverScreen';
 
 const screenDictionary = {
-    WelcomeScreen: <WelcomeScreen key={'activeScreen'}/>,
-    GameScreen: <GameScreen key={'activeScreen'}/>
+    [screens.WELCOME_SCREEN]: <WelcomeScreen key={'activeScreen'} />,
+    [screens.GAME_SCREEN]: <GameScreen key={'activeScreen'} />,
+    [screens.GAME_OVER_SCREEN]: <GameOverScreen key={'activeScreen'} />
 }
 
 /**

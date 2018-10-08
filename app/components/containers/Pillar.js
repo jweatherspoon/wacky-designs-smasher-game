@@ -9,13 +9,14 @@ import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 
 import {
     displayGameOver,
-    resetGameVars,
     updateHighScore,
     incrementScore
 } from '../../redux/actions';
 
-const maxHeight = Dimensions.get('window').height - 40;
+const windowHeight = Dimensions.get('window').height;
+
 const minHeight = 20;
+const maxHeight = windowHeight- minHeight - 20;
 const dropStep = maxHeight / 25;
 
 /**
@@ -25,13 +26,14 @@ const dropStep = maxHeight / 25;
 class Pillar extends Component {
 
     state = {
-        height: 20,
+        height: minHeight,
         animation: null
     }
 
     drop = () => {
         if(!this.state.animation) {
             let fallDir = 1;
+            let collision = false;
             this.setState({
                 animation: setInterval(() => {
                     let height = Math.max(minHeight, Math.min(maxHeight, 
@@ -40,18 +42,36 @@ class Pillar extends Component {
                         height
                     })
 
+                    collision = this.checkCollision();
+                    if(collision) {
+                        this.clearAnimation();
+                        this.endGame();
+                    }
+
                     // Switch direction when it reaches maxHeight
                     if(height === maxHeight) fallDir = -1;
                     // End the animation 
                     if(height == minHeight && fallDir == -1) {
-                        clearInterval(this.state.animation);
-                        this.setState({
-                            animation: null
-                        })
+                        this.clearAnimation();
+                        this.incrementScore();
                     }
                 }, 10)
             })
         }
+    }
+
+    checkCollision = () => {
+        let pillarPos = windowHeight - this.state.height;
+
+        let playerLeft = this.props.player.position;
+        let playerRight = playerLeft + this.props.player.width;
+
+        let pillarLeft = this.props.width * this.props.pillar.column;
+        let pillarRight = pillarLeft + this.props.width;
+
+        let playerInColumn = (playerLeft === pillarLeft && playerRight === pillarRight)
+
+        return (pillarPos < this.props.player.height && playerInColumn)
     }
 
     endGame = () => {
@@ -62,6 +82,17 @@ class Pillar extends Component {
         }
         // Display the game over screen
         this.props.dispatch(displayGameOver());
+    }
+
+    clearAnimation = () => {
+        clearInterval(this.state.animation);
+        this.setState({
+            animation: null
+        })
+    }
+
+    incrementScore = () => {
+        this.props.dispatch(incrementScore());
     }
 
     render() {
@@ -81,7 +112,7 @@ class Pillar extends Component {
 const mapStateToProps = state => ({
     highScore: state.game.highScore,
     currentScore: state.game.score,
-    playerPosition: state.player.position
+    player: state.player
 })
 
 export default connect(mapStateToProps)(Pillar);

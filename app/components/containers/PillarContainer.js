@@ -4,16 +4,29 @@
  */
 
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 
 import Pillar from './Pillar';
 
 class PillarContainer extends Component {
+
+    state = {
+        pillarWidth: 0
+    }
+
+    componentDidMount() {
+        let numPillars = this.props.pillars.length;
+        let pillarWidth = (numPillars) ? Dimensions.get('window').width / numPillars : 0;
+        this.setState({
+            pillarWidth
+        })
+    }
+
     render() {
         let pillars = this.props.pillars.map(pillarObj => (
             <Pillar pillar={pillarObj} key={pillarObj.column}
-                style={{
+                width={this.state.pillarWidth} style={{
                     ...styles.pillar,
                     ...this.props.pillar,
                     height: pillarObj.position,

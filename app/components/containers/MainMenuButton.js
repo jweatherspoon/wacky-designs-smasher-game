@@ -1,25 +1,34 @@
 /**
- * @file Container component for the play button
+ * @file Container component for navigating to the welcome screen
  * @author Jonathan Weatherspoon
  */
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
 import Button from '../presentational/Button';
 
-import { displayGame } from '../../redux/actions';
+import { 
+    displayWelcome,
+    resetGameVars
+} from '../../redux/actions';
 
 /**
- * Handles switching from the welcome screen to the game screen on click
+ * Container component for navigating to the welcome screen
  * @class
  */
-class PlayButton extends Component {
+class MainMenuButton extends Component {
+
+    endGame = () => {
+        this.props.dispatch(resetGameVars());
+        this.props.dispatch(displayWelcome());
+    }
+
     render() {
         return (
-            <Button onPress={this.props.startGame}
-                text={"Play"} />
+            <Button text={"Return to Main Menu"}
+                onPress={this.endGame} />
         )
     }
 }
@@ -40,12 +49,8 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 20,
-        color: 'white', 
+        color: 'white',
     }
 })
 
-const mapDispatchToProps = dispatch => ({
-    startGame: () => dispatch(displayGame())
-})
-
-export default connect(null, mapDispatchToProps)(PlayButton);
+export default connect()(MainMenuButton);

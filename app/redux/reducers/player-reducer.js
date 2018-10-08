@@ -12,6 +12,8 @@ import {
 
 const initialState = {
     position: 0,
+    width: 75,
+    height: 75,
     currency: 0,
     inventory: [],
     lives: 1,

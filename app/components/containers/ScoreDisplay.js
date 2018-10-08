@@ -16,7 +16,7 @@ class ScoreDisplay extends Component {
         return (
             <View>
                 <Text style={{...this.props.style}}>
-                    {this.props.score}
+                    Score: {this.props.score}
                 </Text>
             </View>
         )

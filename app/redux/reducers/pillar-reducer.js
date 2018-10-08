@@ -18,7 +18,6 @@ const initialState = [0, 1, 2, 3, 4].map(column => ({
     active: false,
     fallsOn: null,
     color: colors.INACTIVE,
-    position: 20,
     column: column
 }));
 

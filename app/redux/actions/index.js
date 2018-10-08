@@ -5,10 +5,7 @@
 
 import * as types from './action-types';
 
-// SCREEN NAMES
-const WELCOME_SCREEN = 'WELCOME_SCREEN';
-const GAME_SCREEN = 'GAME_SCREEN';
-const GAME_OVER_SCREEN = 'GAME_OVER_SCREEN';
+import * as screens from '../screens';
 
 /**
  * Change the active screen in the application
@@ -22,9 +19,9 @@ export const changeUI = screen => ({
 })
 
 // Specific screen action creators
-export const displayWelcome = () => changeUI(WELCOME_SCREEN);
-export const displayGame = () => changeUI(GAME_SCREEN);
-export const displayGameOver = () => changeUI(GAME_OVER_SCREEN);
+export const displayWelcome = () => changeUI(screens.WELCOME_SCREEN);
+export const displayGame = () => changeUI(screens.GAME_SCREEN);
+export const displayGameOver = () => changeUI(screens.GAME_OVER_SCREEN);
 
 /**
  * Move the player sprite 

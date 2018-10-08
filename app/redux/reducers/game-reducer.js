@@ -7,7 +7,7 @@ import {
     UPDATE_DIFFICULTY,
     UPDATE_HIGH_SCORE,
     INCREMENT_GAME_TIME,
-    RESET_GAME_TIME,
+    RESET_GAME_VARS,
     INCREMENT_SCORE,
     RESET_SCORE
 } from '../actions/action-types';
@@ -41,7 +41,7 @@ export default GameReducer = (state = initialState, action) => {
                 ...state,
                 gameTime: state.gameTime + 1
             }
-        case RESET_GAME_TIME:
+        case RESET_GAME_VARS:
             return {
                 ...state,
                 score: 0,
