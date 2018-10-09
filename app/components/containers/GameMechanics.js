@@ -27,6 +27,7 @@ class GameMechanics extends GestureRecognizer {
     }
 
     componentDidMount = () => {
+        this.forceUpdate();
         this.setState({
             gameInterval: setInterval(this.update, tickTime)
         })

@@ -6,7 +6,8 @@
 import {
     UPDATE_PILLAR_POSITION,
     ACTIVATE_PILLAR,
-    DEACTIVATE_PILLAR
+    DEACTIVATE_PILLAR, 
+    RESET_PILLARS
 } from '../actions/action-types';
 
 const colors = {
@@ -61,6 +62,8 @@ export default PillarReducer = (state = initialState, action) => {
                 fallsOn: -1
             }
             return newState;
+        case RESET_PILLARS:
+            return initialState;
         default: 
             return state;
     }

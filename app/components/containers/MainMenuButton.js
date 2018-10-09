@@ -33,24 +33,4 @@ class MainMenuButton extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    bottom: {
-        position: 'absolute',
-        bottom: 10
-    },
-    button: {
-        borderRadius: 10,
-        backgroundColor: 'gray',
-        width: 300,
-        height: 40,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    btnText: {
-        fontSize: 20,
-        color: 'white',
-    }
-})
-
 export default connect()(MainMenuButton);
