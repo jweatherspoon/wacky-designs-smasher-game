@@ -89,7 +89,7 @@ class Pillar extends Component {
         let pillarLeft = this.props.width * this.props.pillar.column;
         let pillarRight = pillarLeft + this.props.width;
 
-        let playerInColumn = (playerLeft === pillarLeft && playerRight === pillarRight)
+        let playerInColumn = (playerLeft >= pillarLeft && playerRight <= pillarRight)
 
         return (pillarPos < this.props.player.height && playerInColumn)
     }
@@ -117,12 +117,23 @@ class Pillar extends Component {
     }
 
     render() {
-        let id = this.props.pillar.column;
+        let color = 'whitesmoke';
+        let fallsOn = this.props.pillars[this.props.id].fallsOn;
+        let diff = fallsOn - this.props.ticks;
+        
+        if(this.props.pillars[this.props.id].active) {
+            if (diff < 10) color = 'black';
+            else if (diff < 20) color = 'darkbrown';
+            else if (diff < 30) color = 'brown';
+            else if (diff < 40) color = 'lightbrown';
+            else if (diff < 50) color = 'lightgray';
+        }
+
         return (
             <View style={{
                 ...this.props.style,
                 height: this.state.height,
-                backgroundColor: this.props.pillars[this.props.id].color
+                backgroundColor: color
             }} >
                 <TouchableOpacity onPress={this.drop}>
                     <Text>{this.props.pillars[this.props.id].fallsOn}</Text>
