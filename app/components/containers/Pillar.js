@@ -123,10 +123,7 @@ class Pillar extends Component {
         
         if(this.props.pillars[this.props.id].active) {
             if (diff < 10) color = 'black';
-            else if (diff < 20) color = 'darkbrown';
-            else if (diff < 30) color = 'brown';
-            else if (diff < 40) color = 'lightbrown';
-            else if (diff < 50) color = 'lightgray';
+            else color = `#${((diff / 50) * 240).toString(16)}${((diff / 50) * 240).toString(16)}${((diff / 50) * 240).toString(16)}`
         }
 
         return (
@@ -135,9 +132,7 @@ class Pillar extends Component {
                 height: this.state.height,
                 backgroundColor: color
             }} >
-                <TouchableOpacity onPress={this.drop}>
-                    <Text>{this.props.pillars[this.props.id].fallsOn}</Text>
-                </TouchableOpacity>
+                
             </View>
         )
     }

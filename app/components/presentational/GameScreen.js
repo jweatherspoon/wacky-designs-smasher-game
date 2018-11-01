@@ -62,7 +62,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 30,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderColor: 'black',
+        borderTopWidth: 1,
+        borderBottomWidth: 1
     },
     score: {
         fontSize: 40
