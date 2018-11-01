@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import ScoreDisplay from '../containers/ScoreDisplay';
 import MainMenuButton from '../containers/MainMenuButton';
-import { resetGameVars } from '../../redux/actions';
 
 /**
  * Presentational component for the "Game Over" screen
@@ -24,7 +23,7 @@ class GameOverScreen extends Component {
                 <View style={styles.verticalCenter}>
                     <ScoreDisplay style={{fontSize: 20}} />
                 </View>
-                <MainMenuButton beforeNav={this.resetGame} />
+                <MainMenuButton />
             </View>
         )
     }

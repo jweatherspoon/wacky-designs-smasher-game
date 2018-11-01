@@ -67,6 +67,13 @@ export const deactivatePillar = index => ({
 })
 
 /**
+ * Reset the pillars
+ */
+export const resetPillars = () => ({
+    type: types.RESET_PILLARS,
+})
+
+/**
  * Increment the game time
  */
 export const incrementGameTime = () => ({
