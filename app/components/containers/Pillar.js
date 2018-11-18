@@ -11,7 +11,8 @@ import {
     displayGameOver,
     updateHighScore,
     incrementScore,
-    deactivatePillar
+    deactivatePillar,
+    incrementPlayerCurrency
 } from '../../redux/actions';
 
 const windowHeight = Dimensions.get('window').height;
@@ -74,6 +75,9 @@ class Pillar extends Component {
                     if(height == minHeight && fallDir == -1) {
                         this.clearAnimation();
                         this.incrementScore();
+                        if(this.props.currentScore && this.props.currentScore % 25 === 0) {
+                            this.incrementCurrency();
+                        }
                     }
                 }, 10)
             })
@@ -113,10 +117,6 @@ class Pillar extends Component {
         this.props.dispatch(deactivatePillar(this.props.id));
     }
 
-    incrementScore = () => {
-        this.props.dispatch(incrementScore());
-    }
-
     render() {
         let color = 'whitesmoke';
         let fallsOn = this.props.pillars[this.props.id].fallsOn;
@@ -147,4 +147,9 @@ const mapStateToProps = state => ({
     pillars: state.pillars
 })
 
-export default connect(mapStateToProps)(Pillar);
+const mapDispatchToProps = dispatch => ({
+    incrementScore: () => { dispatch(incrementScore()) },
+    incrementCurrency: () => { dispatch(incrementPlayerCurrency()) }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pillar);

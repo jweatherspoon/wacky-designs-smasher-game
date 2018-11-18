@@ -122,3 +122,10 @@ export const setPlayerCurrency = currency => ({
         currency
     }
 })
+
+/**
+ * Increment the player's currency by 1
+ */
+export const incrementPlayerCurrency = () => ({
+    type: types.INCREMENT_PLAYER_CURRENCY
+})
