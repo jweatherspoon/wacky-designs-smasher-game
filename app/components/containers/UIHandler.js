@@ -4,7 +4,10 @@
  */
 
 import React, { Component } from 'react';
+import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
+
+import { updateHighScore, setPlayerCurrency } from '../../redux/actions';
 
 import * as screens from '../../redux/screens';
 
@@ -23,6 +26,22 @@ const screenDictionary = {
  * @class 
  */
 class UIHandler extends Component {
+
+    componentDidMount() {
+        // Set the high score 
+        AsyncStorage.getItem("game:highscore").then(val => {
+            let score = JSON.parse(val);
+            if(score !== "") 
+                this.props.dispatch(updateHighScore(score));
+        }).catch(err => {});
+
+        // Set the player's currency
+        AsyncStorage.getItem("player:currency").then(val => {
+            let currency = JSON.parse(val);
+            if(currency !== "") 
+                this.props.dispatch(setPlayerCurrency(currency));
+        })
+    }
 
     render() {
         let screenComponent = screenDictionary[this.props.screen];

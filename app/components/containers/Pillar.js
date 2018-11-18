@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Dimensions, AsyncStorage } from 'react-native';
 
 import {
     displayGameOver,
@@ -99,6 +99,7 @@ class Pillar extends Component {
         if(this.props.currentScore > this.props.highScore) {
             // Update the high score
             this.props.dispatch(updateHighScore(this.props.currentScore));
+            AsyncStorage.setItem("game:highscore", JSON.stringify(this.props.currentScore))
         }
         // Display the game over screen
         this.props.dispatch(displayGameOver());

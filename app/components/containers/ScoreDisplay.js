@@ -21,7 +21,8 @@ class ScoreDisplay extends Component {
 }
 
 const mapStateToProps = state => ({
-    score: state.game.score
+    score: state.game.score,
+    highScore: state.game.highScore
 });
 
 export default connect(mapStateToProps)(ScoreDisplay);

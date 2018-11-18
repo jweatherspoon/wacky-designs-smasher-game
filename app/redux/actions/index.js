@@ -111,3 +111,14 @@ export const updateHighScore = score => ({
         highScore: score
     }
 })
+
+/**
+ * Set the player's currency value
+ * @param {number} currency - The new currency value
+ */
+export const setPlayerCurrency = currency => ({
+    type: types.SET_PLAYER_CURRENCY,
+    payload: {
+        currency
+    }
+})

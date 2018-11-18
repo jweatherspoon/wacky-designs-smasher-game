@@ -8,6 +8,7 @@ import {
     INCREMENT_PLAYER_LIVES,
     DECREMENT_PLAYER_LIVES,
     UPDATE_PLAYER_CURRENCY,
+    SET_PLAYER_CURRENCY,
 } from '../actions/action-types';
 
 const initialState = {
@@ -30,6 +31,11 @@ export default PlayerReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currency: state.currency + action.payload.delta,
+            }
+        case SET_PLAYER_CURRENCY:
+            return {
+                ...state,
+                currency: action.payload.currency
             }
         case INCREMENT_PLAYER_LIVES:
             return {
