@@ -10,6 +10,8 @@ import PlayerSprite from '../containers/PlayerSprite';
 import GameMechanics from '../containers/GameMechanics';
 import PillarContainer from '../containers/PillarContainer';
 import ScoreDisplay from '../containers/ScoreDisplay';
+import CurrencyDisplay from '../containers/CurrencyDisplay';
+import LivesDisplay from '../containers/LivesDisplay';
 
 /**
  * Renders everything needed for the core game
@@ -35,11 +37,16 @@ class GameScreen extends Component {
                 </View>
 
                 <View style={styles.scoreContainer}>
-                    <ScoreDisplay style={styles.score} />
+                    <ScoreDisplay style={styles.valueDisplay} />
+                    <CurrencyDisplay style={styles.valueDisplay} />
                 </View>
 
                 <View style={styles.playerContainer}>
                     <PlayerSprite /> 
+                </View>
+
+                <View style={styles.livesCounterContainer}>
+                    <LivesDisplay style={styles.valueDisplay} />
                 </View>
             </GameMechanics>
         )
@@ -61,16 +68,23 @@ const styles = StyleSheet.create({
         width: '100%',
         position: 'absolute',
         top: 30,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         backgroundColor: 'white',
         borderColor: 'black',
         borderTopWidth: 1,
-        borderBottomWidth: 1
+        borderBottomWidth: 1,
+        flexDirection: 'row',
     },
-    score: {
-        fontSize: 40
-    }
+    valueDisplay: {
+        fontSize: 20
+    },
+    livesCounterContainer: {
+        position: 'absolute',
+        bottom: 5,
+        height: 20,
+        right: 10
+    },
 })
 
 export default GameScreen;

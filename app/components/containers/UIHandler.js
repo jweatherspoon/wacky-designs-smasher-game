@@ -31,16 +31,16 @@ class UIHandler extends Component {
         // Set the high score 
         AsyncStorage.getItem("game:highscore").then(val => {
             let score = JSON.parse(val);
-            if(score !== "") 
+            if(score && score !== "") 
                 this.props.dispatch(updateHighScore(score));
         }).catch(err => {});
 
         // Set the player's currency
         AsyncStorage.getItem("player:currency").then(val => {
             let currency = JSON.parse(val);
-            if(currency !== "") 
+            if(currency && currency !== "") 
                 this.props.dispatch(setPlayerCurrency(currency));
-        })
+        }).catch(err => {});
     }
 
     render() {

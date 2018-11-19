@@ -74,9 +74,9 @@ class Pillar extends Component {
                     // End the animation 
                     if(height == minHeight && fallDir == -1) {
                         this.clearAnimation();
-                        this.incrementScore();
+                        this.props.incrementScore();
                         if(this.props.currentScore && this.props.currentScore % 25 === 0) {
-                            this.incrementCurrency();
+                            this.incrementCurrency(); 
                         }
                     }
                 }, 10)
@@ -96,6 +96,14 @@ class Pillar extends Component {
         let playerInColumn = (playerLeft >= pillarLeft && playerRight <= pillarRight)
 
         return (pillarPos < this.props.player.height && playerInColumn)
+    }
+
+    incrementCurrency = () => {
+        this.props.incrementCurrency();
+        AsyncStorage.setItem("player:currency", 
+            JSON.stringify(this.props.player.currency)).catch(err => {
+                alert("Failed to update currency!"); 
+            })
     }
 
     endGame = () => {
@@ -144,10 +152,11 @@ const mapStateToProps = state => ({
     currentScore: state.game.score,
     player: state.player,
     ticks: state.game.gameTime,
-    pillars: state.pillars
+    pillars: state.pillars, 
 })
 
 const mapDispatchToProps = dispatch => ({
+    dispatch,
     incrementScore: () => { dispatch(incrementScore()) },
     incrementCurrency: () => { dispatch(incrementPlayerCurrency()) }
 })
