@@ -66,6 +66,7 @@ class Pillar extends Component {
                     })
 
                     collision = this.checkCollision();
+                    // Ensure the pillar only takes one life from the player
                     if(collision && !this.state.colliding) {
                         this.setState({
                             colliding: true
@@ -82,12 +83,14 @@ class Pillar extends Component {
                     if(height === maxHeight) fallDir = -1;
                     // End the animation 
                     if(height == minHeight && fallDir == -1) {
+                        // Reset the collision detector for next drop
                         this.setState({
                             colliding: false
                         })
-                        
+
                         this.clearAnimation();
                         this.props.incrementScore();
+                        // Give the player a coin every 25 points
                         if(this.props.currentScore && this.props.currentScore % 25 === 0) {
                             this.incrementCurrency(); 
                         }

@@ -12,6 +12,7 @@ import PillarContainer from '../containers/PillarContainer';
 import ScoreDisplay from '../containers/ScoreDisplay';
 import CurrencyDisplay from '../containers/CurrencyDisplay';
 import LivesDisplay from '../containers/LivesDisplay';
+import BuyLifeButton from '../containers/BuyLifeButton';
 
 /**
  * Renders everything needed for the core game
@@ -46,6 +47,7 @@ class GameScreen extends Component {
                 </View>
 
                 <View style={styles.livesCounterContainer}>
+                    <BuyLifeButton />
                     <LivesDisplay style={styles.valueDisplay} />
                 </View>
             </GameMechanics>
@@ -81,9 +83,11 @@ const styles = StyleSheet.create({
     },
     livesCounterContainer: {
         position: 'absolute',
-        bottom: 5,
+        bottom: 2,
         height: 20,
-        right: 10
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     },
 })
 

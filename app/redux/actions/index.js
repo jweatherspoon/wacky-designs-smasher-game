@@ -124,6 +124,16 @@ export const setPlayerCurrency = currency => ({
 })
 
 /**
+ * Update the player's currency by some delta
+ */
+export const updatePlayerCurrency = delta => ({
+    type: types.UPDATE_PLAYER_CURRENCY,
+    payload: {
+        delta
+    }
+})
+
+/**
  * Increment the player's currency by 1
  */
 export const incrementPlayerCurrency = () => ({
