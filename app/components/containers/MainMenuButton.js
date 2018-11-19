@@ -12,7 +12,8 @@ import Button from '../presentational/Button';
 import { 
     displayWelcome,
     resetGameVars,
-    resetPillars
+    resetPillars,
+    resetPlayerVars
 } from '../../redux/actions';
 
 /**
@@ -24,6 +25,7 @@ class MainMenuButton extends Component {
     endGame = () => {
         this.props.dispatch(resetPillars());
         this.props.dispatch(resetGameVars());
+        this.props.dispatch(resetPlayerVars());
         this.props.dispatch(displayWelcome());
     }
 

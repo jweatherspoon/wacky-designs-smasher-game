@@ -10,6 +10,7 @@ import {
     UPDATE_PLAYER_CURRENCY,
     SET_PLAYER_CURRENCY,
     INCREMENT_PLAYER_CURRENCY,
+    RESET_PLAYER,
 } from '../actions/action-types';
 
 const initialState = {
@@ -61,6 +62,8 @@ export default PlayerReducer = (state = initialState, action) => {
                 ...state,
                 position
             }
+        case RESET_PLAYER:
+            return initialState;
         default:
             return state
     }

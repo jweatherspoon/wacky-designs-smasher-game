@@ -37,6 +37,13 @@ export const movePlayer = (delta, max) => ({
     }
 })
 
+/**
+ * Reset the player sprite
+ */
+export const resetPlayerVars = () => ({
+    type: types.RESET_PLAYER
+})
+
 export const updatePillarPosition = (index, position) => ({
     type: types.UPDATE_PILLAR_POSITION,
     payload: {

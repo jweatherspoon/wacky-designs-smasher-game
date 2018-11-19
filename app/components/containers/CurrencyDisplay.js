@@ -7,6 +7,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ValueDisplay from '../presentational/ValueDisplay';
 
+import { TouchableOpacity } from 'react-native';
+import { incrementPlayerCurrency } from '../../redux/actions';
+
 /**
  * Container component for displaying the player's currency
  * @class 
@@ -14,10 +17,13 @@ import ValueDisplay from '../presentational/ValueDisplay';
 class CurrencyDisplay extends Component {
     render() {
         return (
+            <TouchableOpacity 
+                onPress={() => this.props.dispatch(incrementPlayerCurrency())}>
             <ValueDisplay 
                 style={this.props.style}
-                text={"Currency"}
+                text={"Currency"} 
                 value={this.props.currency}/>
+            </TouchableOpacity>
         )
     }
 }
