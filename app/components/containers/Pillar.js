@@ -12,7 +12,8 @@ import {
     updateHighScore,
     incrementScore,
     deactivatePillar,
-    incrementPlayerCurrency
+    incrementPlayerCurrency,
+    decrementPlayerLives
 } from '../../redux/actions';
 
 const windowHeight = Dimensions.get('window').height;
@@ -30,7 +31,8 @@ class Pillar extends Component {
     state = {
         height: 20,
         animation: null,
-        updateInterval: null
+        updateInterval: null,
+        colliding: false
     }
 
     componentDidMount() {
@@ -64,15 +66,26 @@ class Pillar extends Component {
                     })
 
                     collision = this.checkCollision();
-                    if(collision) {
-                        this.clearAnimation();
-                        this.endGame();
+                    if(collision && !this.state.colliding) {
+                        this.setState({
+                            colliding: true
+                        })
+                        // Reduce the player's lives by 1 and check if they died
+                        this.props.dispatch(decrementPlayerLives());
+                        if(this.props.player.lives === 0) {
+                            this.clearAnimation();
+                            this.endGame();
+                        }
                     }
 
                     // Switch direction when it reaches maxHeight
                     if(height === maxHeight) fallDir = -1;
                     // End the animation 
                     if(height == minHeight && fallDir == -1) {
+                        this.setState({
+                            colliding: false
+                        })
+                        
                         this.clearAnimation();
                         this.props.incrementScore();
                         if(this.props.currentScore && this.props.currentScore % 25 === 0) {

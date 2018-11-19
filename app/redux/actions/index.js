@@ -129,3 +129,17 @@ export const setPlayerCurrency = currency => ({
 export const incrementPlayerCurrency = () => ({
     type: types.INCREMENT_PLAYER_CURRENCY
 })
+
+/**
+ * Decrement the player's lives by 1
+ */
+export const decrementPlayerLives = () => ({
+    type: types.DECREMENT_PLAYER_LIVES
+})
+
+/**
+ * Increment the player's lives by 1
+ */
+export const incrementPlayerLives = () => ({
+    type: types.INCREMENT_PLAYER_LIVES
+})
