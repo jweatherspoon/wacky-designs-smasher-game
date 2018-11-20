@@ -63,7 +63,10 @@ export default PlayerReducer = (state = initialState, action) => {
                 position
             }
         case RESET_PLAYER:
-            return initialState;
+            return {
+                ...initialState,
+                currency: state.currency,
+            };
         default:
             return state
     }
