@@ -9,7 +9,7 @@ import { StyleSheet } from 'react-native';
 
 import Button from '../presentational/Button';
 
-import { displayGame } from '../../redux/actions';
+import { displayDifficulty } from '../../redux/actions';
 
 /**
  * Handles switching from the welcome screen to the difficulty screen on click
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = dispatch => ({
-    startGame: () => dispatch(displayGame())
+    startGame: () => dispatch(displayDifficulty())
 })
 
 export default connect(null, mapDispatchToProps)(PlayButton);

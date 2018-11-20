@@ -5,10 +5,15 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-
-import { updateDifficulty } from '../../redux/actions';
+import { View } from 'react-native';
 
 import Button from '../presentational/Button';
+
+import { 
+    updateDifficulty,
+    displayGame 
+} from '../../redux/actions';
+
 
 /**
  * Container component for choosing game difficulty
@@ -20,10 +25,15 @@ class DifficultyButton extends Button {
         this.props.dispatch(
             updateDifficulty(this.props.value)
         )
+        this.props.dispatch(displayGame());
     }
 
     render() {
-        <Button onPress={this.setDifficulty} text={this.props.content} />
+        return (
+            <View style={this.props.style}>
+                <Button onPress={this.setDifficulty} text={this.props.content} />
+            </View>
+        )
     }
 }
 

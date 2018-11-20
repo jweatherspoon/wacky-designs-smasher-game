@@ -57,8 +57,7 @@ class GameMechanics extends GestureRecognizer {
     }
 
     selectPillars = () => {
-        let selectionNum = 2;
-        return _.sampleSize(this.props.pillars, selectionNum);
+        return _.sampleSize(this.props.pillars, this.props.difficulty);
     }
 
     activatePillar = id => {

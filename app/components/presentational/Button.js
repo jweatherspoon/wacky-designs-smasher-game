@@ -12,8 +12,9 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
  */
 class Button extends Component {
     render() {
+        let style = this.props.bottom ? styles.bottom : {}
         return (
-            <View style={(this.props.bottom ? styles.bottom : {})}>
+            <View style={style}>
                 <TouchableOpacity style={styles.button}
                     onPress={this.props.onPress}>
                     <Text style={styles.btnText}>
