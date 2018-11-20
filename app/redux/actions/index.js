@@ -22,6 +22,7 @@ export const changeUI = screen => ({
 export const displayWelcome = () => changeUI(screens.WELCOME_SCREEN);
 export const displayGame = () => changeUI(screens.GAME_SCREEN);
 export const displayGameOver = () => changeUI(screens.GAME_OVER_SCREEN);
+export const displayDifficulty = () => changeUI(screens.DIFFICULTY_SELECTION_SCREEN);
 
 /**
  * Move the player sprite 
@@ -159,4 +160,14 @@ export const decrementPlayerLives = () => ({
  */
 export const incrementPlayerLives = () => ({
     type: types.INCREMENT_PLAYER_LIVES
+})
+
+/**
+ * Set the difficulty of the game
+ */
+export const updateDifficulty = difficulty => ({
+    type: types.UPDATE_DIFFICULTY,
+    payload: {
+        difficulty
+    }
 })

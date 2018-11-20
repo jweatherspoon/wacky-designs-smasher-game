@@ -12,14 +12,14 @@ import Button from '../presentational/Button';
 import { displayGame } from '../../redux/actions';
 
 /**
- * Handles switching from the welcome screen to the game screen on click
+ * Handles switching from the welcome screen to the difficulty screen on click
  * @class
  */
 class PlayButton extends Component {
     render() {
         return (
             <Button onPress={this.props.startGame}
-                text={"Play"} />
+                text={"Play"} bottom={true} />
         )
     }
 }

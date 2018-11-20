@@ -14,11 +14,13 @@ import * as screens from '../../redux/screens';
 import WelcomeScreen from '../presentational/WelcomeScreen';
 import GameScreen from '../presentational/GameScreen';
 import GameOverScreen from '../presentational/GameOverScreen';
+import DifficultySelectionScreen from '../presentational/DifficultySelectionScreen';
 
 const screenDictionary = {
     [screens.WELCOME_SCREEN]: <WelcomeScreen key={'activeScreen'} />,
     [screens.GAME_SCREEN]: <GameScreen key={'activeScreen'} />,
-    [screens.GAME_OVER_SCREEN]: <GameOverScreen key={'activeScreen'} />
+    [screens.GAME_OVER_SCREEN]: <GameOverScreen key={'activeScreen'} />,
+    [screens.DIFFICULTY_SELECTION_SCREEN]: <DifficultySelectionScreen key={'activeScreen'} />,
 }
 
 /**

@@ -32,7 +32,8 @@ class MainMenuButton extends Component {
     render() {
         return (
             <Button text={"Return to Main Menu"}
-                onPress={this.endGame} />
+                onPress={this.endGame}
+                bottom={true} />
         )
     }
 }
