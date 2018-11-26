@@ -109,7 +109,7 @@ class Pillar extends Component {
         let pillarLeft = this.props.width * this.props.pillar.column;
         let pillarRight = pillarLeft + this.props.width;
 
-        let playerInColumn = (playerLeft >= pillarLeft && playerRight <= pillarRight)
+        let playerInColumn = (playerLeft >= pillarLeft && playerRight <= pillarRight + 1)
 
         return (pillarPos < this.props.player.height && playerInColumn)
     }
