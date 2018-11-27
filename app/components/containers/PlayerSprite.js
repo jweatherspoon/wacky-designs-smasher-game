@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import { Dimensions, Image } from 'react-native';
+import { Dimensions, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import Sprite from '../../assets/images/Sprite.png';
@@ -21,14 +21,16 @@ class PlayerSprite extends Component {
 
     render() {
         return (
-            <Image source={Sprite}
-                style={{
-                    ...this.props.style,
-                    height: this.state.dims,
-                    width: this.state.dims,
-                    left: this.props.position
-                }}
-            />
+            <TouchableOpacity onPress={() => alert(this.props.position)}>
+                <Image source={Sprite}
+                    style={{
+                        ...this.props.style,
+                        height: this.state.dims,
+                        width: this.state.dims,
+                        left: this.props.position
+                    }}
+                />
+            </TouchableOpacity>
         )
     }
 }

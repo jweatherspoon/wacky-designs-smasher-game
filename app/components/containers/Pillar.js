@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Dimensions, AsyncStorage } from 'react-native';
+import { View, Dimensions, AsyncStorage, Text } from 'react-native';
 
 import {
     displayGameOver,
@@ -109,7 +109,7 @@ class Pillar extends Component {
         let pillarLeft = this.props.width * this.props.pillar.column;
         let pillarRight = pillarLeft + this.props.width;
 
-        let playerInColumn = (playerLeft >= pillarLeft && playerRight <= pillarRight + 1)
+        let playerInColumn = (playerLeft >= pillarLeft - 1 && playerRight <= pillarRight + 1)
 
         return (pillarPos < this.props.player.height && playerInColumn)
     }
@@ -157,7 +157,7 @@ class Pillar extends Component {
                 height: this.state.height,
                 backgroundColor: color
             }} >
-                
+                <Text>{this.props.pillars[this.props.id].position}</Text>
             </View>
         )
     }
